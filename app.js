@@ -37,20 +37,12 @@ atmo.setBg = (imgURL) => {
 
 atmo.init = () => {
     atmo.getWeather()
-        .then(res => {
-            console.log(res.weather[0].description); //working
-            return res.weather[0].description;
-        })
-        .then(descrip => {
-            console.log(descrip);
-            return atmo.getBg(descrip);
-        })
-        .then(res => {
-            console.log(res);
-            const url = res.results[0].urls.regular;
+        .then(weatherData => weatherData.weather[0].description)
+        .then(description => atmo.getBg(description))
+        .then(imgData => {
+            const url = imgData.results[0].urls.regular;
             atmo.setBg(url);
-            console.log("setBg to URL, " + url);
-        })
+        });
 }
 
 $(function () {
