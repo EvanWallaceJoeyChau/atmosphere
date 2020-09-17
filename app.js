@@ -48,6 +48,11 @@ atmo.showPresetInput = function () {
     $(this).hide();
 }
 
+atmo.hideOverlay = () => {
+    $('.userInput').hide();
+    $('.overlay').hide();
+}
+
 atmo.init = () => {
     // when user clicks on "Location" button, make location input form appear
     $("#locationInputBtn").on("click", atmo.showLocationInput);
@@ -65,7 +70,8 @@ atmo.init = () => {
             .then(imgData => {
                 const url = imgData.results[0].urls.regular;
                 atmo.setBg(url);
-            });
+            })
+            .then(() => atmo.hideOverlay());
     });
 }
 
