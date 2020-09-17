@@ -36,10 +36,10 @@ atmo.setBg = (imgURL) => {
 }
 
 atmo.showLocationInput = function () {
-    $(this).hide();
     $("#presetInputBtn").hide();
     $("#locationInputText").show();
     $("#locationInputSubmit").show();
+    $(this).hide();
 }
 
 atmo.showPresetInput = function () {
@@ -48,18 +48,14 @@ atmo.showPresetInput = function () {
     $(this).hide();
 }
 
-// atmo.getWeather()
-//     .then(weatherData => weatherData.weather[0].description)
-//     .then(description => atmo.getBg(description))
-//     .then(imgData => {
-//         const url = imgData.results[0].urls.regular;
-//         atmo.setBg(url);
-//     });
-
 atmo.init = () => {
     // when user clicks on "Location" button, make location input form appear
     $("#locationInputBtn").on("click", atmo.showLocationInput);
+
+    // when user clicks on "preset" button, make preset dropdown menu form appear
     $("#presetInputBtn").on("click", atmo.showPresetInput);
+
+    // when user enters a location, pass location into getWeather
     $("#location").on("submit", function (e) {
         e.preventDefault();
         const userLocation = $("#locationInputText").val();
@@ -69,7 +65,6 @@ atmo.init = () => {
             .then(imgData => {
                 const url = imgData.results[0].urls.regular;
                 atmo.setBg(url);
-
             });
     });
 }
