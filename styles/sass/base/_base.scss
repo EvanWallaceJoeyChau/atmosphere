@@ -17,3 +17,15 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 .hidden {
     display: none;
 }
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    background-color: unset;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+}
