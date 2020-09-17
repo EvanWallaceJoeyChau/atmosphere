@@ -14,3 +14,8 @@ body {
     max-width: 1024px;
     margin: 0 auto;
 }
+
+main {
+    display: flex;
+    justify-content: space-between;
+}
