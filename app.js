@@ -30,10 +30,15 @@ atmo.getBg = (query) => {
 }
 
 atmo.revealBg = (data) => {
-    // unpack URL from Unsplash response and set page's background
-    const url = data.results[0].urls.regular;
+    // randomize image returned from Unsplash
+    const randomIndex = Math.floor(Math.random() * data.results.length);
+    const image = data.results[randomIndex];
+    const url = image.urls.regular;
+
+    // set css before overlay is hidden
     $("body").css({
-        "background-image": `url(${url})`
+        "background-image": `url(${url})`,
+        "color": image.color
     })
 
     // hide overlay to reveal the background
