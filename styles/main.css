@@ -215,6 +215,10 @@ h1 {
   font-size: 5rem;
 }
 
+button {
+  border: 2px solid white;
+}
+
 body {
   background-repeat: no-repeat;
   background-size: cover;
