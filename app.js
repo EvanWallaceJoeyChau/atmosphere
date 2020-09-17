@@ -41,6 +41,10 @@ atmo.revealBg = (data) => {
         "color": image.color
     })
 
+    // add description of bg image for screen readers
+    const description = `<span class="srOnly">${image.alt_description}</span>`;
+    $('main').append(description);
+
     // hide overlay to reveal the background
     $('.userInput').hide();
     $('.overlay').hide();
