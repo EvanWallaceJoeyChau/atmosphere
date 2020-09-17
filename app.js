@@ -58,6 +58,10 @@ atmo.init = () => {
     // when user clicks on "Location" button, make location input form appear
     $("#locationInputBtn").on("click", atmo.showLocationInput);
     $("#presetInputBtn").on("click", atmo.showPresetInput);
+    $("#location").on("submit", function (e) {
+        e.preventDefault();
+        console.log("submitted");
+    });
 }
 
 $(function () {
