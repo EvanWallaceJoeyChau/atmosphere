@@ -41,6 +41,12 @@ atmo.showLocationInput = function () {
     $(this).hide();
 }
 
+atmo.showPresetInput = function () {
+    $("#locationInputBtn").hide();
+    $("#presetInputMenu").show();
+    $(this).hide();
+}
+
 atmo.init = () => {
     atmo.getWeather()
         .then(weatherData => weatherData.weather[0].description)
@@ -51,6 +57,7 @@ atmo.init = () => {
         });
     // when user clicks on "Location" button, make location input form appear
     $("#locationInputBtn").on("click", atmo.showLocationInput);
+    $("#presetInputBtn").on("click", atmo.showPresetInput);
 }
 
 $(function () {
