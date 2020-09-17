@@ -45,6 +45,7 @@ atmo.showLocationInput = function () {
 atmo.showPresetInput = function () {
     $("#locationInputBtn").hide();
     $("#presetInputMenu").show();
+    $('option').show();
     $(this).hide();
 }
 
@@ -67,6 +68,17 @@ atmo.init = () => {
         atmo.getWeather(userLocation)
             .then(weatherData => weatherData.weather[0].description)
             .then(description => atmo.getBg(description))
+            .then(imgData => {
+                const url = imgData.results[0].urls.regular;
+                atmo.setBg(url);
+            })
+            .then(() => atmo.hideOverlay());
+    });
+    // when user chooses a preset, pass value to Unsplash API
+    $("#preset").on("change", function (e) {
+        e.preventDefault();
+        const preset = $("#presetInputMenu").val();
+        atmo.getBg(preset)
             .then(imgData => {
                 const url = imgData.results[0].urls.regular;
                 atmo.setBg(url);
