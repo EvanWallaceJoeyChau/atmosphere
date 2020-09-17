@@ -35,6 +35,12 @@ atmo.setBg = (imgURL) => {
     })
 }
 
+atmo.showLocationInput = function () {
+    $("#presetInputBtn").hide();
+    $("#locationInputText").show();
+    $(this).hide();
+}
+
 atmo.init = () => {
     atmo.getWeather()
         .then(weatherData => weatherData.weather[0].description)
@@ -43,6 +49,8 @@ atmo.init = () => {
             const url = imgData.results[0].urls.regular;
             atmo.setBg(url);
         });
+    // when user clicks on "Location" button, make location input form appear
+    $("#locationInputBtn").on("click", atmo.showLocationInput);
 }
 
 $(function () {
