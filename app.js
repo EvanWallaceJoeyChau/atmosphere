@@ -29,10 +29,16 @@ atmo.getBg = (query) => {
     });
 }
 
-atmo.setBg = (imgURL) => {
+atmo.revealBg = (data) => {
+    // unpack URL from Unsplash response and set page's background
+    const url = data.results[0].urls.regular;
     $("body").css({
-        "background-image": `url(${imgURL})`
+        "background-image": `url(${url})`
     })
+
+    // hide overlay to reveal the background
+    $('.userInput').hide();
+    $('.overlay').hide();
 }
 
 atmo.showLocationInput = function () {
@@ -64,26 +70,24 @@ atmo.init = () => {
     // when user enters a location, pass location into getWeather
     $("#location").on("submit", function (e) {
         e.preventDefault();
-        const userLocation = $("#locationInputText").val();
-        atmo.getWeather(userLocation)
+        let userLocation = $("#locationInputText");
+        atmo.getWeather(userLocation.val())
             .then(weatherData => weatherData.weather[0].description)
             .then(description => atmo.getBg(description))
-            .then(imgData => {
-                const url = imgData.results[0].urls.regular;
-                atmo.setBg(url);
-            })
-            .then(() => atmo.hideOverlay());
+            .then(res => atmo.revealBg(res));
+
+        // clear the input text so box is empty on refresh
+        userLocation.val("");
     });
+
     // when user chooses a preset, pass value to Unsplash API
     $("#preset").on("change", function (e) {
         e.preventDefault();
         const preset = $("#presetInputMenu").val();
         atmo.getBg(preset)
-            .then(imgData => {
-                const url = imgData.results[0].urls.regular;
-                atmo.setBg(url);
-            })
-            .then(() => atmo.hideOverlay());
+            .then(res => atmo.revealBg(res));
+        
+        // TODO: reset the dropdown box so dropdown shows instruction on refresh
     });
 }
 
