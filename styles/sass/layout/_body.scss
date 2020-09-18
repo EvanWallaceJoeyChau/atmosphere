@@ -17,6 +17,7 @@ body {
 
 main {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     height: 20vh;
 }
@@ -29,6 +30,15 @@ main {
     height: 100%;
     background-color: white;
     z-index: -1;
+}
+
+// empty container for positioning the day/night mode button
+.modeButtonContainer {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: space-around;
+    width: 100px;
+    height: min-content;
 }
 
 .shuffle {
