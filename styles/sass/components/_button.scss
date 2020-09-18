@@ -44,3 +44,26 @@ button {
         height: 130%;
     }
 }
+
+// styles for day/night mode button
+.modeButton {
+    width: 175px;
+    background: linear-gradient(135deg, rgba(170, 139, 139, 0.25) 50%, transparent 50%);
+
+    &:hover {
+        background: linear-gradient(135deg, rgba(170, 139, 139, 0.25) 50%, transparent 50%);
+    }
+
+    i {
+        padding: 0 0.8em;
+    }
+}
+
+.nightMode {
+    background: linear-gradient(45deg, transparent 50%, rgba(170, 139, 139, 0.25) 50%);
+
+    &:hover {
+        background: linear-gradient(45deg, transparent 50%, rgba(170, 139, 139, 0.25) 50%);
+
+    }
+}

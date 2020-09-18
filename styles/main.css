@@ -277,6 +277,27 @@ button:hover::after, button:focus::after {
   height: 130%;
 }
 
+.modeButton {
+  width: 175px;
+  background: linear-gradient(135deg, rgba(170, 139, 139, 0.25) 50%, transparent 50%);
+}
+
+.modeButton:hover {
+  background: linear-gradient(135deg, rgba(170, 139, 139, 0.25) 50%, transparent 50%);
+}
+
+.modeButton i {
+  padding: 0 0.8em;
+}
+
+.nightMode {
+  background: linear-gradient(45deg, transparent 50%, rgba(170, 139, 139, 0.25) 50%);
+}
+
+.nightMode:hover {
+  background: linear-gradient(45deg, transparent 50%, rgba(170, 139, 139, 0.25) 50%);
+}
+
 i:hover {
   cursor: pointer;
 }
@@ -307,6 +328,8 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -321,6 +344,20 @@ main {
   height: 100%;
   background-color: white;
   z-index: -1;
+}
+
+.modeButtonContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100px;
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
 }
 
 .shuffle {
