@@ -220,26 +220,27 @@ h1 {
   font-size: 5rem;
 }
 
+form > * {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+form > * input, form > * select {
+  text-transform: inherit;
+  letter-spacing: inherit;
+}
+
 footer {
   font-size: 0.9rem;
 }
 
-button {
+form > * {
   border: 1px solid #999;
-  width: 350px;
   padding: 0.8em;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   position: relative;
-  -webkit-transition: background-color 0.4s ease-in;
-  transition: background-color 0.4s ease-in;
 }
 
-button:focus, button:hover {
-  background-color: rgba(153, 153, 153, 0.25);
-}
-
-button::before, button::after {
+form > *::before, form > *::after {
   content: '';
   position: absolute;
   left: 50%;
@@ -251,7 +252,7 @@ button::before, button::after {
   height: 0;
 }
 
-button::before {
+form > *::before {
   height: 130%;
   border-top: 1px solid #999;
   border-bottom: 1px solid #999;
@@ -259,7 +260,7 @@ button::before {
   transition: width 0.6s ease-out;
 }
 
-button::after {
+form > *::after {
   width: 92%;
   border-left: 1px solid #999;
   border-right: 1px solid #999;
@@ -267,14 +268,50 @@ button::after {
   transition: height 0.6s ease-out;
 }
 
-button:hover::before, button:focus::before {
+form > *:hover::before, form > *:focus-within::before, form > *:focus::before {
   width: 92%;
   height: 130%;
 }
 
-button:hover::after, button:focus::after {
+form > *:hover::after, form > *:focus-within::after, form > *:focus::after {
   width: 92%;
   height: 130%;
+}
+
+.selectWrapper,
+.inputWrapper {
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+}
+
+button {
+  width: 350px;
+  -webkit-transition: background-color 0.4s ease-in;
+  transition: background-color 0.4s ease-in;
+}
+
+button:focus, button:hover {
+  background-color: rgba(153, 153, 153, 0.25);
+}
+
+input, select {
+  width: 500px;
+  border: none;
+  margin: 0em 0.8em;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
+
+select {
+  width: 300px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 
 i:hover {
