@@ -56,15 +56,14 @@ atmo.revealBg = (data) => {
 
 atmo.showLocationInput = function () {
     $("#presetInputBtn").hide();
-    $("#locationInputText").show();
+    $("#locationInputContainer").show();
     $("#locationInputSubmit").show();
     $(this).hide();
 }
 
 atmo.showPresetInput = function () {
     $("#locationInputBtn").hide();
-    $("#presetInputMenu").show();
-    $('option').show();
+    $("#presetInputContainer").show();
     $(this).hide();
 }
 

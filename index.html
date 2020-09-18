@@ -24,8 +24,8 @@
 
             <label for="locationInputText" class="srOnly" autocomplete="off">Enter your location, and hit enter to
                 submit</label>
-            <div class="inputWrapper">
-                <input type="text" id="locationInputText" placeholder="Enter your Location" class="hidden">
+            <div class="inputWrapper hidden" id="locationInputContainer">
+                <input type="text" id="locationInputText" placeholder="Enter your Location">
             </div>
             <!-- location -->
         </form>
@@ -36,13 +36,13 @@
             <button type="button" id="presetInputBtn">Presets</button>
 
             <label for="presetInputMenu" class="srOnly">Choose a preset</label>
-            <div class="selectWrapper">
-                <select id="presetInputMenu" class="hidden" autocomplete="off">
-                    <option class="hidden" disabled selected>Choose an option</option>
-                    <option class="hidden" value="sunny beaches">Sunny Beach</option>
-                    <option class="hidden" value="rainy city">Rainy City</option>
-                    <option class="hidden" value="snowy mountain">Snowy Mountains</option>
-                    <option class="hidden" value="milky way">Starry Night</option>
+            <div class="selectWrapper hidden" id="presetInputContainer">
+                <select id="presetInputMenu" autocomplete="off">
+                    <option disabled selected>Choose an option</option>
+                    <option value="sunny beaches">Sunny Beach</option>
+                    <option value="rainy city">Rainy City</option>
+                    <option value="snowy mountain">Snowy Mountains</option>
+                    <option value="milky way">Starry Night</option>
                 </select>
                 <span class="selectArrow" aria-hidden="true"></span>
             </div>
