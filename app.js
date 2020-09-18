@@ -38,7 +38,10 @@ atmo.revealBg = (data) => {
     // set css before overlay is hidden
     $("body").css({
         "background-image": `url(${url})`,
-        "color": image.color
+        "color": image.color,
+    })
+    $("h1").css({
+        "font-size": "2.5rem",
     })
 
     // add description of bg image for screen readers

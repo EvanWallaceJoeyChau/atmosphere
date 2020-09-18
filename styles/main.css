@@ -228,6 +228,10 @@ button {
   border: 2px solid #999;
 }
 
+i:hover {
+  cursor: pointer;
+}
+
 body {
   background-repeat: no-repeat;
   background-size: cover;
@@ -267,6 +271,12 @@ main {
   height: 100%;
   background-color: white;
   z-index: -1;
+}
+
+.shuffle {
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
 }
 
 footer {
