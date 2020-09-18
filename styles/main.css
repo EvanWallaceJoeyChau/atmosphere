@@ -288,6 +288,21 @@ form > *:hover::after, form > *:focus-within::after, form > *:focus::after {
   width: min-content;
 }
 
+.selectWrapper .selectArrow::after,
+.inputWrapper .selectArrow::after {
+  content: '';
+  position: absolute;
+  display: block;
+  height: 100%;
+  top: 100%;
+  right: 0.8em;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-right: 0.4em solid transparent;
+  border-left: 0.4em solid transparent;
+  border-top: 0.4em solid #999;
+}
+
 button {
   width: 350px;
   -webkit-transition: background-color 0.4s ease-in;
@@ -301,6 +316,7 @@ button:focus, button:hover {
 input, select {
   width: 500px;
   border: none;
+  background-color: transparent;
   margin: 0em 0.8em;
   text-align: center;
   position: relative;
@@ -312,6 +328,11 @@ select {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
+  padding-right: 0.8em;
+}
+
+select:hover {
+  cursor: pointer;
 }
 
 i:hover {

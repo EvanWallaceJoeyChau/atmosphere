@@ -43,6 +43,20 @@ form > * {
 .inputWrapper {
     height: min-content;
     width: min-content;
+    .selectArrow {
+        &::after {
+            content: '';
+            position: absolute;
+            display: block;
+            height: 100%;
+            top: 100%;
+            right: 0.8em;
+            transform: translate(-50%,-50%);
+            border-right: $arrowManip transparent;
+            border-left: $arrowManip transparent;
+            border-top: $arrowManip $grey;
+        }
+    }
 }
 
 button {
@@ -56,6 +70,7 @@ button {
 input, select {
     width: 500px;
     border: none;
+    background-color: transparent;
     margin: 0em 0.8em;
     text-align: center;
     position: relative;
@@ -64,4 +79,8 @@ input, select {
 select {
     width: 300px;
     appearance: none;
+    padding-right: 0.8em;
+    &:hover {
+        cursor: pointer;
+    }
 }
