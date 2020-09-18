@@ -49,7 +49,7 @@ atmo.revealBg = (data) => {
     $('main').append(description);
 
     // hide overlay to reveal the background
-    $('.userInput').hide();
+    $('main').hide();
     $('.overlay').hide();
     $(".shuffle").show();
 }
