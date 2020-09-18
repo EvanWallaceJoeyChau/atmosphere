@@ -48,6 +48,7 @@ atmo.revealBg = (data) => {
     // hide overlay to reveal the background
     $('.userInput').hide();
     $('.overlay').hide();
+    $(".shuffle").show();
 }
 
 atmo.showLocationInput = function () {
@@ -95,9 +96,15 @@ atmo.init = () => {
         const preset = $("#presetInputMenu").val();
         atmo.getBg(preset)
             .then(res => atmo.revealBg(res));
-        
-        // TODO: reset the dropdown box so dropdown shows instruction on refresh
     });
+    $(".shuffle").on("click", () => {
+        const optionArray = $("option").toArray();
+        optionArray.shift();
+        const presets = optionArray.map(el => el.value);
+        const random = Math.floor(Math.random() * presets.length);
+        atmo.getBg(presets[random])
+            .then(res => atmo.revealBg(res));
+    })
 }
 
 $(function () {
