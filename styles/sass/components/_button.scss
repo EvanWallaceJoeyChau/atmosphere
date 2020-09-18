@@ -1,10 +1,15 @@
 button {
     border: 1px solid $grey;
-    // box-shadow: 0px 0px 0 1px $grey;
-    padding: 0.8em 2em;
+    width: 350px;
+    padding: 0.8em;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     position: relative;
+    transition: background-color 0.4s ease-in;
+    &:focus,
+    &:hover {
+        background-color: rgba(153, 153, 153, 0.25);
+    }
     &::before,
     &::after {
         content: '';
@@ -20,19 +25,21 @@ button {
         height: 130%;
         border-top: 1px solid $grey;
         border-bottom: 1px solid $grey;
-        transition: width 0.4s ease-out;
+        transition: width 0.6s ease-out;
     }
     &::after {
         width: 92%;
         border-left: 1px solid $grey;
         border-right: 1px solid $grey;   
-        transition: height 0.4s ease-out;
+        transition: height 0.6s ease-out;
     }
-    &:hover::before {
+    &:hover::before,
+    &:focus::before {
         width: 92%;
         height: 130%;
     }
-    &:hover::after {
+    &:hover::after,
+    &:focus::after {
         width: 92%;
         height: 130%;
     }
