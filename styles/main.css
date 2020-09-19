@@ -374,11 +374,14 @@ body {
 
 .wrapper {
   width: 90%;
-  max-width: 1024px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
 main {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -416,6 +419,30 @@ footer p {
   text-align: right;
 }
 
-h1 {
-  padding-top: 0.8em;
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: 32px;
+}
+
+.weatherContainer {
+  text-align: right;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  padding: 10px 20px;
+  background-color: rgba(153, 153, 153, 0.25);
+  border-radius: 50%;
+}
+
+.tempBox {
+  padding-right: 0.2em;
+}
+
+img {
+  width: 50px;
 }
