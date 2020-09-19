@@ -356,6 +356,10 @@ i:hover {
   cursor: pointer;
 }
 
+.fa-circle {
+  color: rgba(153, 153, 153, 0.25);
+}
+
 body {
   background-repeat: no-repeat;
   background-size: cover;
@@ -460,9 +464,10 @@ aside {
           justify-content: flex-end;
   margin-top: auto;
   margin-left: auto;
+  padding-bottom: 1.4rem;
 }
 
-aside i {
+aside .fa-stack {
   display: block;
-  padding: 0.8em 0;
+  padding: 2rem 0;
 }
