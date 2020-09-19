@@ -68,6 +68,62 @@ atmo.showPresetInput = function () {
     $(this).hide();
 }
 
+// define which components are visible at each app state
+atmo.states = {
+    welcome: {
+        overlay: true,
+        presetInputBtn: true,
+        presetInputMenu: false,
+        locationInputBtn: true,
+        locationInputText: false,
+        sidebar: false,
+    },
+    inputLocation: {
+        overlay: true,
+        presetInputBtn: false,
+        presetInputMenu: false,
+        locationInputBtn: false,
+        locationInputText: true,
+        locationInputSubmit: true,
+        sidebar: false,
+    },
+    inputPreset: {
+        overlay: true,
+        presetInputBtn: false,
+        presetInputMenu: true,
+        locationInputBtn: false,
+        locationInputText: false,
+        locationInputSubmit: false,
+        sidebar: false,
+    },
+    workspace: {
+        overlay: false,
+        presetInputBtn: false,
+        presetInputMenu: false,
+        locationInputBtn: false,
+        locationInputText: false,
+        locationInputSubmit: false,
+        sidebar: true,
+    }
+}
+
+// set the state of the app by hiding/showing app components
+atmo.setState = (stateName) => {
+    // assemble all components whose visibility must be changed
+    const components = atmo.states[stateName];
+    const keys = Object.keys(components);
+
+    // set the visibility of each compoennt's DOM node according to the boolean value
+    keys.forEach((key) => {
+        const node = $(`#${key}`);
+        if (components[key]) {
+            node.removeClass('hidden');
+        } else {
+            node.addClass('hidden');
+        }
+    });
+};
+
 atmo.init = () => {
     // when user clicks on "Location" button, make location input form appear
     $("#locationInputBtn").on("click", atmo.showLocationInput);
