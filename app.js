@@ -3,11 +3,24 @@ const atmo = {};
 
 atmo.unsplashKey = "-yn3TSnS8fmd6m_Vl4i8pkMpz30rD3AFYZo23CGCKLE";
 atmo.weatherKey = "76e02199a8d1ef08e9d324471a472dc3";
+atmo.geolocationKey = "59b86ae070e3453fb8d4ec8e88f4d2b4";
 
 // capitalize the first letter of a string
 atmo.capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
-atmo.getWeather = (query) => {
+atmo.getLocation = (query) => {
+    return $.ajax({
+        url: "https://api.opencagedata.com/geocode/v1/json",
+        method: "GET",
+        dataType: "json",
+        data: {
+            key: atmo.geolocationKey,
+            q: query
+        }
+    })
+}
+
+atmo.getWeather = (lat, lng) => {
     return $.ajax({
         url: "http://api.openweathermap.org/data/2.5/weather",
         method: "GET",
@@ -128,15 +141,32 @@ atmo.init = () => {
         let userLocation = $("#locationInputText");
         const userCity = userLocation.val();
         $("#errMsg").empty();
-        atmo.getWeather(userCity)
-            .fail(err => {
-                let errMsg;
-                if (err.status === 400) errMsg = "Please enter a city";
-                else if (err.status === 404) errMsg = "Could not find " + atmo.capitalize(userCity) + ". Please try again.";
-                $("#errMsg").text(errMsg)
+        atmo.getLocation(userCity)
+            .then(res => {
+                // TODO: how to remove scope limitations for variables
+                //       chained API
+                const country = res.results[0].components.country;
+                const lat = res.results[0].geometry.lat;
+                const lng = res.results[0].geometry.lng;
+                console.log(lat, lng);
+                return atmo.getWeather(lat, lng);
             })
-            .then(weatherData => weatherData.weather[0].description)
-            .then(description => atmo.getBg(description))
+            // .fail(err => {
+            //     let errMsg;
+            //     if (err.status === 400) errMsg = "Please enter a city";
+            //     else if (err.status === 404) errMsg = "Could not find " + atmo.capitalize(userCity) + ". Please try again.";
+            //     $("#errMsg").text(errMsg)
+            // })
+            .then(weatherData => {
+                const temperature = Math.round(weatherData.main.temp - 273);
+                const iconCode = weatherData.weather[0].icon;
+                const description = weatherData.weather[0].description;
+                const weatherString = `
+                <img src="./assets/white/${iconCode}.png" alt="${description}">
+                <p id="tempMsg" class="temp">${temperature} C</p>`;
+                $("#weatherInfo").append(weatherString);
+                return atmo.getBg(description);
+            })
             .then(res => atmo.revealBg(res));
 
         // clear the input text so box is empty on refresh
