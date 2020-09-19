@@ -15,13 +15,13 @@
     <header>
         <h1>Atmosphere</h1>
         <!-- reset button -->
-        <div class="weatherContainer">
+        <div class="weatherContainer hidden" id="weatherInfo">
             <img src="./assets/white/10n.png" alt="">
             <p id="tempMsg" class="temp">25 C</p>
         </div>
     </header>
     <main>
-        <form id="location" class="userInput">
+        <form id="location" class="userInput" autocomplete="off">
 
             <label for="locationInputBtn" class="srOnly">Select to enter your city</label>
             <button type="button" id="locationInputBtn">Location</button>

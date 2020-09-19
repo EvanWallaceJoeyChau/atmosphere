@@ -64,6 +64,7 @@ atmo.states = {
         locationInputBtn: true,
         locationInputContainer: false,
         sidebar: false,
+        weatherInfo: false,
     },
     inputLocation: {
         overlay: true,
@@ -73,6 +74,7 @@ atmo.states = {
         locationInputContainer: true,
         locationInputSubmit: true,
         sidebar: false,
+        weatherInfo: false,
     },
     inputPreset: {
         overlay: true,
@@ -82,6 +84,7 @@ atmo.states = {
         locationInputContainer: false,
         locationInputSubmit: false,
         sidebar: false,
+        weatherInfo: false,
     },
     workspace: {
         overlay: false,
@@ -91,6 +94,7 @@ atmo.states = {
         locationInputContainer: false,
         locationInputSubmit: false,
         sidebar: true,
+        weatherInfo: true,
     }
 }
 
