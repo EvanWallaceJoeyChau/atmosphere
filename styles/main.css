@@ -340,3 +340,15 @@ footer p {
 h1 {
   padding-top: 0.8em;
 }
+
+.sidebar {
+  height: 20vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  margin-top: auto;
+  margin-left: auto;
+}
