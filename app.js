@@ -49,9 +49,7 @@ atmo.revealBg = (data) => {
     $('main').append(description);
 
     // hide overlay to reveal the background
-    $('main').hide();
-    $('.overlay').hide();
-    $("aside").show();
+    atmo.setState("workspace");
 }
 
 // define which components are visible at each app state
