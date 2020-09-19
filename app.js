@@ -95,7 +95,7 @@ atmo.init = () => {
         atmo.getBg(preset)
             .then(res => atmo.revealBg(res));
     });
-    $(".shuffle").on("click", () => {
+    $("#shuffleIcon").on("click", () => {
         const optionArray = $("option").toArray();
         optionArray.shift();
         const presets = optionArray.map(el => el.value);
