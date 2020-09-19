@@ -27,7 +27,8 @@ atmo.getWeather = (lat, lng) => {
         dataType: "json",
         data: {
             appid: atmo.weatherKey,
-            q: query
+            lat: lat,
+            lon: lng
         }
     })
 }
@@ -194,6 +195,9 @@ atmo.init = () => {
     // TODO: clean this up and have both input forms appear; use toggleClass?
     $("#restartIcon").on("click", () => {
         atmo.setState("welcome");
+
+        // remove weather Info
+        $("#weatherInfo").empty();
 
         // revert the dynamic style changes made by jQuery
         $('body, h1').removeAttr("style");
