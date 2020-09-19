@@ -54,20 +54,6 @@ atmo.revealBg = (data) => {
     $("aside").show();
 }
 
-atmo.showLocationInput = function () {
-    $("#presetInputBtn").hide();
-    $("#locationInputText").show();
-    $("#locationInputSubmit").show();
-    $(this).hide();
-}
-
-atmo.showPresetInput = function () {
-    $("#locationInputBtn").hide();
-    $("#presetInputMenu").show();
-    $('option').show();
-    $(this).hide();
-}
-
 // define which components are visible at each app state
 atmo.states = {
     welcome: {
@@ -126,10 +112,10 @@ atmo.setState = (stateName) => {
 
 atmo.init = () => {
     // when user clicks on "Location" button, make location input form appear
-    $("#locationInputBtn").on("click", atmo.showLocationInput);
+    $("#locationInputBtn").on("click", () => { atmo.setState("inputLocation") });
 
     // when user clicks on "preset" button, make preset dropdown menu form appear
-    $("#presetInputBtn").on("click", atmo.showPresetInput);
+    $("#presetInputBtn").on("click", () => { atmo.setState("inputPreset") });
 
     // when user enters a location, pass location into getWeather
     $("#location").on("submit", function (e) {
