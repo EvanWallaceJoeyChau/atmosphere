@@ -151,6 +151,8 @@ atmo.init = () => {
         atmo.getBg(preset)
             .then(res => atmo.revealBg(res));
     });
+
+    // when user clicks shuffle icon, choose a random background using presets
     $("#shuffleIcon").on("click", () => {
         const optionArray = $("option").toArray();
         optionArray.shift();
