@@ -15,15 +15,28 @@
     <header>
         <h1>Atmosphere</h1>
         <!-- reset button -->
+        <div class="weatherContainer">
+            <img src="./assets/white/10n.png" alt="">
+            <p id="tempMsg" class="temp">25 C</p>
+        </div>
     </header>
+<<<<<<< HEAD
     <main>
         <form id="location" class="userInput">
+=======
+    <main class="wrapper">
+        <form id="location" class="userInput" autocomplete="off">
+>>>>>>> featureJ
 
-            <label for="locationInputBtn" class="srOnly">Select to enter your location</label>
+            <label for="locationInputBtn" class="srOnly">Select to enter your city</label>
             <button type="button" id="locationInputBtn">Location</button>
 
-            <label for="locationInputText" class="srOnly">Enter your location, and hit enter to submit</label>
-            <input type="text" id="locationInputText" placeholder="Enter your Location" class="hidden">
+            <label for="locationInputText" class="srOnly">Enter your city, and hit enter to
+                submit</label>
+            <div class="inputWrapper hidden" id="locationInputContainer">
+                <input type="text" id="locationInputText" placeholder="Enter your City">
+            </div>
+            <p id="errMsg" class="err"></p>
             <!-- location -->
         </form>
 
@@ -33,13 +46,16 @@
             <button type="button" id="presetInputBtn">Presets</button>
 
             <label for="presetInputMenu" class="srOnly">Choose a preset</label>
-            <select id="presetInputMenu" class="hidden" autocomplete="off">
-                <option class="hidden" disabled selected>Choose an option:</option>
-                <option class="hidden" value="sunny beaches">Sunny Beach</option>
-                <option class="hidden" value="rainy city">Rainy City</option>
-                <option class="hidden" value="snowy mountain">Snowy Mountains</option>
-                <option class="hidden" value="milky way">Starry Night</option>
-            </select>
+            <div class="selectWrapper hidden" id="presetInputContainer">
+                <select id="presetInputMenu" autocomplete="off">
+                    <option disabled selected>Choose an option</option>
+                    <option value="sunny beaches">Sunny Beach</option>
+                    <option value="rainy city">Rainy City</option>
+                    <option value="snowy mountain">Snowy Mountains</option>
+                    <option value="milky way">Starry Night</option>
+                </select>
+                <span class="selectArrow" aria-hidden="true"></span>
+            </div>
             <!-- select preset -->
         </form>
 

@@ -220,26 +220,36 @@ h1 {
   font-size: 5rem;
 }
 
+form > * {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+form > * input, form > * select {
+  text-transform: inherit;
+  letter-spacing: inherit;
+}
+
+.err {
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 0.9em;
+}
+
 footer {
   font-size: 0.9rem;
 }
 
-button {
+button, input, select,
+.inputWrapper, .selectWrapper {
   border: 1px solid #999;
-  width: 350px;
   padding: 0.8em;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
   position: relative;
-  -webkit-transition: background-color 0.4s ease-in;
-  transition: background-color 0.4s ease-in;
 }
 
-button:focus, button:hover {
-  background-color: rgba(153, 153, 153, 0.25);
-}
-
-button::before, button::after {
+button::before, button::after, input::before, input::after, select::before, select::after,
+.inputWrapper::before,
+.inputWrapper::after, .selectWrapper::before, .selectWrapper::after {
   content: '';
   position: absolute;
   left: 50%;
@@ -251,7 +261,8 @@ button::before, button::after {
   height: 0;
 }
 
-button::before {
+button::before, input::before, select::before,
+.inputWrapper::before, .selectWrapper::before {
   height: 130%;
   border-top: 1px solid #999;
   border-bottom: 1px solid #999;
@@ -259,7 +270,8 @@ button::before {
   transition: width 0.6s ease-out;
 }
 
-button::after {
+button::after, input::after, select::after,
+.inputWrapper::after, .selectWrapper::after {
   width: 92%;
   border-left: 1px solid #999;
   border-right: 1px solid #999;
@@ -267,14 +279,77 @@ button::after {
   transition: height 0.6s ease-out;
 }
 
-button:hover::before, button:focus::before {
+button:hover::before, button:focus-within::before, button:focus::before, input:hover::before, input:focus-within::before, input:focus::before, select:hover::before, select:focus-within::before, select:focus::before,
+.inputWrapper:hover::before,
+.inputWrapper:focus-within::before,
+.inputWrapper:focus::before, .selectWrapper:hover::before, .selectWrapper:focus-within::before, .selectWrapper:focus::before {
   width: 92%;
   height: 130%;
 }
 
-button:hover::after, button:focus::after {
+button:hover::after, button:focus-within::after, button:focus::after, input:hover::after, input:focus-within::after, input:focus::after, select:hover::after, select:focus-within::after, select:focus::after,
+.inputWrapper:hover::after,
+.inputWrapper:focus-within::after,
+.inputWrapper:focus::after, .selectWrapper:hover::after, .selectWrapper:focus-within::after, .selectWrapper:focus::after {
   width: 92%;
   height: 130%;
+}
+
+.selectWrapper,
+.inputWrapper {
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+}
+
+.selectWrapper .selectArrow::after,
+.inputWrapper .selectArrow::after {
+  content: '';
+  position: absolute;
+  display: block;
+  height: 100%;
+  top: 100%;
+  right: 0.8em;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border-right: 0.4em solid transparent;
+  border-left: 0.4em solid transparent;
+  border-top: 0.4em solid #999;
+}
+
+button {
+  width: 350px;
+  -webkit-transition: background-color 0.4s ease-in;
+  transition: background-color 0.4s ease-in;
+}
+
+button:focus, button:hover {
+  background-color: rgba(153, 153, 153, 0.25);
+}
+
+input, select {
+  width: 500px;
+  border: none;
+  background-color: transparent;
+  margin: 0em 0.8em;
+  text-align: center;
+  position: relative;
+  z-index: 5;
+}
+
+select {
+  width: 300px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  padding-right: 0.8em;
+}
+
+select:hover {
+  cursor: pointer;
 }
 
 i:hover {
@@ -299,11 +374,14 @@ body {
 
 .wrapper {
   width: 90%;
-  max-width: 1024px;
+  max-width: 1600px;
   margin: 0 auto;
 }
 
 main {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -311,6 +389,10 @@ main {
       -ms-flex-pack: justify;
           justify-content: space-between;
   height: 20vh;
+}
+
+.err {
+  padding-top: 20px;
 }
 
 .overlay {
@@ -337,8 +419,32 @@ footer p {
   text-align: right;
 }
 
-h1 {
-  padding-top: 0.8em;
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: 32px;
+}
+
+.weatherContainer {
+  text-align: right;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  padding: 10px 20px;
+  background-color: rgba(153, 153, 153, 0.25);
+  border-radius: 50%;
+}
+
+.tempBox {
+  padding-right: 0.2em;
+}
+
+img {
+  width: 50px;
 }
 
 aside {
