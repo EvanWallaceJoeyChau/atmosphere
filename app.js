@@ -150,11 +150,10 @@ atmo.init = () => {
 
     // TODO: clean this up and have both input forms appear; use toggleClass?
     $("#restartIcon").on("click", () => {
-        $('aside').hide();
-        $(".overlay").show();
-        $('main').show();
-        $('.userInput').show();
-        $('body').css({"color": "#999"});
+        atmo.setState("welcome");
+
+        // revert the dynamic style changes made by jQuery
+        $('body, h1').removeAttr("style");
     })
 
 }
