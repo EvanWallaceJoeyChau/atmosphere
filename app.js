@@ -4,6 +4,9 @@ const atmo = {};
 atmo.unsplashKey = "-yn3TSnS8fmd6m_Vl4i8pkMpz30rD3AFYZo23CGCKLE";
 atmo.weatherKey = "76e02199a8d1ef08e9d324471a472dc3";
 
+// capitalize the first letter of a string
+atmo.capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
 atmo.getWeather = (query) => {
     return $.ajax({
         url: "http://api.openweathermap.org/data/2.5/weather",
@@ -83,7 +86,14 @@ atmo.init = () => {
     $("#location").on("submit", function (e) {
         e.preventDefault();
         let userLocation = $("#locationInputText");
-        atmo.getWeather(userLocation.val())
+        const userCity = userLocation.val();
+        atmo.getWeather(userCity)
+            .fail(err => {
+                let errMsg;
+                if (err.status === 400) errMsg = "Please enter a city";
+                else if (err.status === 404) errMsg = "Could not find " + atmo.capitalize(userCity) + ". Please try again.";
+                $("#errMsg").text(errMsg)
+            })
             .then(weatherData => weatherData.weather[0].description)
             .then(description => atmo.getBg(description))
             .then(res => atmo.revealBg(res));

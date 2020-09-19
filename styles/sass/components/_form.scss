@@ -1,4 +1,5 @@
-form > * {
+button, input, select,
+.inputWrapper, .selectWrapper {
     border: 1px solid $grey;
     padding: 0.8em;
     position: relative;
