@@ -1,3 +1,18 @@
-h1 {
-    padding-top: 0.8em;
+header {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 32px;
+}
+.weatherContainer {
+    text-align: right;
+    width: min-content;
+    padding: 10px 20px;
+    background-color: rgba(153, 153, 153, 0.25);
+    border-radius: 50%;
+}
+.tempBox {
+    padding-right: 0.2em;
+}
+img {
+    width: 50px;
 }
