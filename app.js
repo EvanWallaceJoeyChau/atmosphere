@@ -49,7 +49,7 @@ atmo.revealBg = (data) => {
     $('main').append(description);
 
     // hide overlay to reveal the background
-    $('.userInput').hide();
+    $('main').hide();
     $('.overlay').hide();
     $(".shuffle").show();
 }
@@ -66,29 +66,6 @@ atmo.showPresetInput = function () {
     $("#presetInputMenu").show();
     $('option').show();
     $(this).hide();
-}
-
-atmo.hideOverlay = () => {
-    $('.userInput').hide();
-    $('.overlay').hide();
-}
-
-// apply styles to the day/night mode button depending on current mode
-atmo.toggleButtonMode = () => {
-    // toggle fill of Font Awesome icons
-    $(".modeButton i").toArray().forEach(icon => {
-        console.log(icon)
-        if ($(icon).hasClass("fas")) {
-            $(icon).removeClass("fas");
-            $(icon).addClass("far");
-        } else {
-            $(icon).removeClass("far");
-            $(icon).addClass("fas");
-        }
-    });
-    
-    // apply button background style
-    $(".modeButton").toggleClass("nightMode");
 }
 
 atmo.init = () => {

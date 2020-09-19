@@ -11,12 +11,12 @@
     <title>Atmosphere</title>
 </head>
 
-<body>
-    <header class="wrapper">
+<body class="wrapper">
+    <header>
         <h1>Atmosphere</h1>
         <!-- reset button -->
     </header>
-    <main class="wrapper">
+    <main>
         <form id="location" class="userInput">
 
             <label for="locationInputBtn" class="srOnly">Select to enter your location</label>
@@ -51,12 +51,14 @@
         </div>
 
     </main>
-    <div class="shuffle hidden">
-        <span class="srOnly">Click to scroll for more images</span>
-        <i class="fas fa-random" aria-hidden="true"></i>
-    </div>
+    <aside class="sidebar hidden">
+        <div class="shuffle hidden">
+            <span class="srOnly">Click to scroll for more images</span>
+            <i class="fas fa-random" aria-hidden="true"></i>
+        </div>
+    </aside>
 
-    <footer class="wrapper">
+    <footer>
         <p>Made by <a href="#">Evan Wallace</a> and <a href="#">Joey Chau</a> at <a href="#">Juno College</a></p>
     </footer>
     <div class="overlay"></div>
