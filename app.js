@@ -103,6 +103,16 @@ atmo.init = () => {
         atmo.getBg(presets[random])
             .then(res => atmo.revealBg(res));
     })
+
+    // TODO: clean this up and have both input forms appear; use toggleClass?
+    $("#restartIcon").on("click", () => {
+        $('aside').hide();
+        $(".overlay").show();
+        $('main').show();
+        $('.userInput').show();
+        $('body').css({"color": "#999"});
+    })
+
 }
 
 $(function () {
