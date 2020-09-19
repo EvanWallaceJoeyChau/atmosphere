@@ -52,30 +52,71 @@ atmo.revealBg = (data) => {
     $('main').append(description);
 
     // hide overlay to reveal the background
-    $('main').hide();
-    $('.overlay').hide();
-    $("aside").show();
+    atmo.setState("workspace");
 }
 
-atmo.showLocationInput = function () {
-    $("#presetInputBtn").hide();
-    $("#locationInputContainer").show();
-    $("#locationInputSubmit").show();
-    $(this).hide();
+// define which components are visible at each app state
+atmo.states = {
+    welcome: {
+        overlay: true,
+        presetInputBtn: true,
+        presetInputMenu: false,
+        locationInputBtn: true,
+        locationInputText: false,
+        sidebar: false,
+    },
+    inputLocation: {
+        overlay: true,
+        presetInputBtn: false,
+        presetInputMenu: false,
+        locationInputBtn: false,
+        locationInputText: true,
+        locationInputSubmit: true,
+        sidebar: false,
+    },
+    inputPreset: {
+        overlay: true,
+        presetInputBtn: false,
+        presetInputMenu: true,
+        locationInputBtn: false,
+        locationInputText: false,
+        locationInputSubmit: false,
+        sidebar: false,
+    },
+    workspace: {
+        overlay: false,
+        presetInputBtn: false,
+        presetInputMenu: false,
+        locationInputBtn: false,
+        locationInputText: false,
+        locationInputSubmit: false,
+        sidebar: true,
+    }
 }
 
-atmo.showPresetInput = function () {
-    $("#locationInputBtn").hide();
-    $("#presetInputContainer").show();
-    $(this).hide();
-}
+// set the state of the app by hiding/showing app components
+atmo.setState = (stateName) => {
+    // assemble all components whose visibility must be changed
+    const components = atmo.states[stateName];
+    const keys = Object.keys(components);
+
+    // set the visibility of each compoennt's DOM node according to the boolean value
+    keys.forEach((key) => {
+        const node = $(`#${key}`);
+        if (components[key]) {
+            node.removeClass('hidden');
+        } else {
+            node.addClass('hidden');
+        }
+    });
+};
 
 atmo.init = () => {
     // when user clicks on "Location" button, make location input form appear
-    $("#locationInputBtn").on("click", atmo.showLocationInput);
+    $("#locationInputBtn").on("click", () => { atmo.setState("inputLocation") });
 
     // when user clicks on "preset" button, make preset dropdown menu form appear
-    $("#presetInputBtn").on("click", atmo.showPresetInput);
+    $("#presetInputBtn").on("click", () => { atmo.setState("inputPreset") });
 
     // when user enters a location, pass location into getWeather
     $("#location").on("submit", function (e) {
@@ -104,6 +145,8 @@ atmo.init = () => {
         atmo.getBg(preset)
             .then(res => atmo.revealBg(res));
     });
+
+    // when user clicks shuffle icon, choose a random background using presets
     $("#shuffleIcon").on("click", () => {
         const optionArray = $("option").toArray();
         optionArray.shift();
@@ -115,11 +158,10 @@ atmo.init = () => {
 
     // TODO: clean this up and have both input forms appear; use toggleClass?
     $("#restartIcon").on("click", () => {
-        $('aside').hide();
-        $(".overlay").show();
-        $('main').show();
-        $('.userInput').show();
-        $('body').css({"color": "#999"});
+        atmo.setState("welcome");
+
+        // revert the dynamic style changes made by jQuery
+        $('body, h1').removeAttr("style");
     })
 
 }
