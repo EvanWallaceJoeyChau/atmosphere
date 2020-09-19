@@ -51,7 +51,7 @@ atmo.revealBg = (data) => {
     // hide overlay to reveal the background
     $('main').hide();
     $('.overlay').hide();
-    $(".shuffle").show();
+    $("aside").show();
 }
 
 atmo.showLocationInput = function () {
