@@ -60,35 +60,35 @@ atmo.states = {
     welcome: {
         overlay: true,
         presetInputBtn: true,
-        presetInputMenu: false,
+        presetInputContainer: false,
         locationInputBtn: true,
-        locationInputText: false,
+        locationInputContainer: false,
         sidebar: false,
     },
     inputLocation: {
         overlay: true,
         presetInputBtn: false,
-        presetInputMenu: false,
+        presetInputContainer: false,
         locationInputBtn: false,
-        locationInputText: true,
+        locationInputContainer: true,
         locationInputSubmit: true,
         sidebar: false,
     },
     inputPreset: {
         overlay: true,
         presetInputBtn: false,
-        presetInputMenu: true,
+        presetInputContainer: true,
         locationInputBtn: false,
-        locationInputText: false,
+        locationInputContainer: false,
         locationInputSubmit: false,
         sidebar: false,
     },
     workspace: {
         overlay: false,
         presetInputBtn: false,
-        presetInputMenu: false,
+        presetInputContainer: false,
         locationInputBtn: false,
-        locationInputText: false,
+        locationInputContainer: false,
         locationInputSubmit: false,
         sidebar: true,
     }
@@ -123,6 +123,7 @@ atmo.init = () => {
         e.preventDefault();
         let userLocation = $("#locationInputText");
         const userCity = userLocation.val();
+        $("#errMsg").empty();
         atmo.getWeather(userCity)
             .fail(err => {
                 let errMsg;
