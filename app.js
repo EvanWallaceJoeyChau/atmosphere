@@ -142,33 +142,46 @@ atmo.init = () => {
         let userLocation = $("#locationInputText");
         const userCity = userLocation.val();
         $("#errMsg").empty();
+
+        // request information about user's location from geolocation API
+        // TODO: handle errors for all APIs
         atmo.getLocation(userCity)
-            .then(res => {
-                // TODO: how to remove scope limitations for variables
-                //       chained API
+            .then((res) => {
+                // extract data from location response
                 const country = res.results[0].components.country;
                 const lat = res.results[0].geometry.lat;
                 const lng = res.results[0].geometry.lng;
-                console.log(lat, lng);
-                return atmo.getWeather(lat, lng);
+
+                // request weather from weather API
+                const weatherResponse = atmo.getWeather(lat, lng);
+
+                // when weather response arrives, request background image from photo API
+                const imageResponse = weatherRes.then((weatherData) => {
+                    // extract data from weather response
+                    const temperature = Math.round(weatherData.main.temp - 273);
+                    const iconCode = weatherData.weather[0].icon;
+                    const description = weatherData.weather[0].description;
+                    const weatherDisplay = `
+                    <img src="./assets/white/${iconCode}.png" alt="${description}">
+                    <p id="tempMsg" class="temp">${temperature} C</p>`;
+                    $("#weatherInfo").append(weatherDisplay);
+
+                    // request image data using weather description + user's country
+                    return atmo.getBg(`${description} ${country}`);
+                })
+
+                // return a Promise for the response holding the image data
+                return imageResponse;
             })
+
+            // set background image when the response arrives
+            .then((res) => atmo.revealBg(res));
             // .fail(err => {
             //     let errMsg;
             //     if (err.status === 400) errMsg = "Please enter a city";
             //     else if (err.status === 404) errMsg = "Could not find " + atmo.capitalize(userCity) + ". Please try again.";
             //     $("#errMsg").text(errMsg)
             // })
-            .then(weatherData => {
-                const temperature = Math.round(weatherData.main.temp - 273);
-                const iconCode = weatherData.weather[0].icon;
-                const description = weatherData.weather[0].description;
-                const weatherString = `
-                <img src="./assets/white/${iconCode}.png" alt="${description}">
-                <p id="tempMsg" class="temp">${temperature} C</p>`;
-                $("#weatherInfo").append(weatherString);
-                return atmo.getBg(description);
-            })
-            .then(res => atmo.revealBg(res));
 
         // clear the input text so box is empty on refresh
         userLocation.val("");
