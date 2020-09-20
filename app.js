@@ -129,6 +129,20 @@ atmo.setState = (stateName) => {
     });
 };
 
+atmo.createWeatherDisplay = (weatherData) => {
+    // create HTML string for weather icon
+    const iconCode = weatherData.weather[0].icon;
+    const description = weatherData.weather[0].description;
+    const icon = `<img src="./assets/white/${iconCode}.png" alt="${description}">`;
+
+    // create HTML string for weather text
+    const temperature = Math.round(weatherData.main.temp - 273);
+    const text = `<p id="tempMsg" class="temp">${temperature}&#176;C</p>`;
+
+    // add elements to their container
+    $("#weatherInfo").append(icon, text);
+};
+
 atmo.init = () => {
     // when user clicks on "Location" button, make location input form appear
     $("#locationInputBtn").on("click", () => { atmo.setState("inputLocation") });
@@ -156,18 +170,9 @@ atmo.init = () => {
                 const weatherResponse = atmo.getWeather(lat, lng);
 
                 // when weather response arrives, request background image from photo API
-                const imageResponse = weatherRes.then((weatherData) => {
-                    // extract data from weather response
-                    const temperature = Math.round(weatherData.main.temp - 273);
-                    const iconCode = weatherData.weather[0].icon;
-                    const description = weatherData.weather[0].description;
-                    const weatherDisplay = `
-                    <img src="./assets/white/${iconCode}.png" alt="${description}">
-                    <p id="tempMsg" class="temp">${temperature} C</p>`;
-                    $("#weatherInfo").append(weatherDisplay);
-
-                    // request image data using weather description + user's country
-                    return atmo.getBg(`${description} ${country}`);
+                const imageResponse = weatherResponse.then((weatherData) => {
+                    atmo.createWeatherDisplay(weatherData) 
+                    return atmo.getBg(`${weatherData.weather[0].description} ${country}`);
                 })
 
                 // return a Promise for the response holding the image data
