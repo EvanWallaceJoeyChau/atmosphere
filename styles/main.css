@@ -360,6 +360,14 @@ i:hover {
   color: rgba(153, 153, 153, 0.25);
 }
 
+.fa-stack:hover .fa-circle {
+  color: inherit;
+}
+
+.fa-stack:hover .fa-stack-1x {
+  color: rgba(153, 153, 153, 0.25);
+}
+
 body {
   background-repeat: no-repeat;
   background-size: cover;
