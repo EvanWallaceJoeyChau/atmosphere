@@ -220,7 +220,7 @@ atmo.init = () => {
             .then(res => atmo.revealBg(res));
     })
 
-    // TODO: clean this up and have both input forms appear; use toggleClass?
+    // return the user to the input selection screen
     $("#restartIcon").on("click", () => {
         atmo.setState("welcome");
 
