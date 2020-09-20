@@ -46,7 +46,7 @@ atmo.getBg = (query) => {
     });
 }
 
-atmo.revealBg = (data) => {
+atmo.setBg = (data) => {
     // randomize image returned from Unsplash
     const randomIndex = Math.floor(Math.random() * data.results.length);
     const image = data.results[randomIndex];
@@ -64,9 +64,6 @@ atmo.revealBg = (data) => {
     // add description of bg image for screen readers
     const description = `<span class="srOnly">${image.alt_description}</span>`;
     $('main').append(description);
-
-    // hide overlay to reveal the background
-    atmo.setState("workspace");
 }
 
 // define which components are visible at each app state
@@ -100,7 +97,7 @@ atmo.states = {
         sidebar: false,
         weatherInfo: false,
     },
-    workspace: {
+    locationResult: {
         overlay: false,
         presetInputBtn: false,
         presetInputContainer: false,
@@ -109,6 +106,16 @@ atmo.states = {
         locationInputSubmit: false,
         sidebar: true,
         weatherInfo: true,
+    },
+    presetResult: {
+        overlay: false,
+        presetInputBtn: false,
+        presetInputContainer: false,
+        locationInputBtn: false,
+        locationInputContainer: false,
+        locationInputSubmit: false,
+        sidebar: true,
+        weatherInfo: false,
     }
 }
 
@@ -178,9 +185,11 @@ atmo.init = () => {
                 // return a Promise for the response holding the image data
                 return imageResponse;
             })
-
-            // set background image when the response arrives
-            .then((res) => atmo.revealBg(res));
+            .then((res) => {
+                // set and reveal the background image
+                atmo.setBg(res);
+                atmo.setState("locationResult");
+            });
             // .fail(err => {
             //     let errMsg;
             //     if (err.status === 400) errMsg = "Please enter a city";
@@ -197,7 +206,8 @@ atmo.init = () => {
         e.preventDefault();
         const preset = $("#presetInputMenu").val();
         atmo.getBg(preset)
-            .then(res => atmo.revealBg(res));
+            .then(res => atmo.setBg(res))
+            .then(atmo.setState("presetResult"));
     });
 
     // when user clicks shuffle icon, choose a random background using presets
