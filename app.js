@@ -217,7 +217,7 @@ atmo.init = () => {
         const presets = optionArray.map(el => el.value);
         const random = Math.floor(Math.random() * presets.length);
         atmo.getBg(presets[random])
-            .then(res => atmo.revealBg(res));
+            .then(res => atmo.setBg(res));
     })
 
     // return the user to the input selection screen
