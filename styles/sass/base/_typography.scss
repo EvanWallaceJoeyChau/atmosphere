@@ -31,13 +31,9 @@ h1 {
     font-size: 5rem;
 }
 
-form > * {
+button, input, select {
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    input, select {
-        text-transform: inherit;
-        letter-spacing: inherit;
-    }
 }
     .err {
         text-transform: none;
