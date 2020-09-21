@@ -11,15 +11,22 @@ body {
 
 .wrapper {
     width: 90%;
-    max-width: 1024px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
 main {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     height: 20vh;
+}
+
+.err {
+    padding-top: 20px;
 }
 
 .overlay {

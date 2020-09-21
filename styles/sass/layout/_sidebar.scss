@@ -1,7 +1,12 @@
-.sidebar {
-    height: 20vh;
+aside {
     display: flex;
+    flex-direction: column;
     justify-content: flex-end;
     margin-top: auto;
     margin-left: auto;
+    padding-bottom: 1.4rem;
+    .fa-stack {
+        display: block;
+        padding: 2rem 0;
+    }
 }
