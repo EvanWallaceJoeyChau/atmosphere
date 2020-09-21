@@ -470,10 +470,7 @@ header {
   padding: 10px 20px;
   background-color: rgba(153, 153, 153, 0.25);
   border-radius: 50%;
-}
-
-.tempBox {
-  padding-right: 0.2em;
+  text-align: center;
 }
 
 img {
