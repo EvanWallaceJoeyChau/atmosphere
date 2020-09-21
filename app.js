@@ -8,6 +8,24 @@ atmo.geolocationKey = "59b86ae070e3453fb8d4ec8e88f4d2b4";
 // capitalize the first letter of a string
 atmo.capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 
+// switch between day/night mode
+atmo.toggleNightMode = () => {
+    // toggle fill of Font Awesome icons
+    $(".modeButton i").toArray().forEach(icon => {
+        console.log(icon)
+        if ($(icon).hasClass("fas")) {
+            $(icon).removeClass("fas");
+            $(icon).addClass("far");
+        } else {
+            $(icon).removeClass("far");
+            $(icon).addClass("fas");
+        }
+    });
+
+    // apply/remove nightMode style to all relevant commponents
+    $(".modeButton, .overlay").toggleClass("nightMode");
+}
+
 atmo.getLocation = (query) => {
     return $.ajax({
         url: "https://api.opencagedata.com/geocode/v1/json",
