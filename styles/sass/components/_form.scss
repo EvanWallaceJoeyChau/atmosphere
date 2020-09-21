@@ -1,3 +1,45 @@
+button, input, select,
+.inputWrapper, .selectWrapper {
+    border: 1px solid $grey;
+    padding: 0.8em;
+    position: relative;
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        display: block;
+        width: 0;
+        height: 0;
+    }
+    &::before {
+        height: 130%;
+        border-top: 1px solid $grey;
+        border-bottom: 1px solid $grey;
+        transition: width 0.6s ease-out;
+    }
+    &::after {
+        width: 92%;
+        border-left: 1px solid $grey;
+        border-right: 1px solid $grey;   
+        transition: height 0.6s ease-out;
+    }
+    &:hover::before,
+    &:focus-within::before,
+    &:focus::before {
+        width: 92%;
+        height: 130%;
+    }
+    &:hover::after,
+    &:focus-within::after,
+    &:focus::after {
+        width: 92%;
+        height: 130%;
+    }
+}
+
 .selectWrapper,
 .inputWrapper {
     height: min-content;
