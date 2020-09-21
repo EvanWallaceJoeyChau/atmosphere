@@ -56,14 +56,13 @@ select {
     i {
         padding: 0 0.8em;
     }
-}
 
-.nightMode {
-    background: linear-gradient(45deg, transparent 50%, rgba(170, 139, 139, 0.25) 50%);
-
-    &:hover {
+    &.nightMode {
         background: linear-gradient(45deg, transparent 50%, rgba(170, 139, 139, 0.25) 50%);
-
+    
+        &:hover {
+            background: linear-gradient(45deg, transparent 50%, rgba(170, 139, 139, 0.25) 50%);
+    
+        }
     }
 }
-
