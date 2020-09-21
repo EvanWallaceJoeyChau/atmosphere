@@ -165,7 +165,6 @@ atmo.init = () => {
         $("#errMsg").empty();
 
         // request information about user's location from geolocation API
-        // TODO: handle errors for all APIs
         atmo.getLocation(userCity)
             .then((res) => {
                 // extract data from location response
@@ -178,7 +177,7 @@ atmo.init = () => {
 
                 // when weather response arrives, request background image from photo API
                 const imageResponse = weatherResponse.then((weatherData) => {
-                    atmo.createWeatherDisplay(weatherData) 
+                    atmo.createWeatherDisplay(weatherData);
                     return atmo.getBg(`${weatherData.weather[0].description} ${country}`);
                 })
 
@@ -189,13 +188,17 @@ atmo.init = () => {
                 // set and reveal the background image
                 atmo.setBg(res);
                 atmo.setState("locationResult");
+            })
+            .fail(err => {
+                let errMsg;
+                // if user does not enter anything in the input
+                if (userCity || userCity === "") errMsg = "Please enter your location";
+                // if either geolocation API or weather API cannot return a response
+                else if (err.status === 400) errMsg = "Could not find " + atmo.capitalize(userCity) + ". Please try again.";
+                // all other errors (i.e., exceeded API limits)
+                else errMsg = "Could not process your request. Please try again later.";
+                $("#errMsg").text(errMsg);
             });
-            // .fail(err => {
-            //     let errMsg;
-            //     if (err.status === 400) errMsg = "Please enter a city";
-            //     else if (err.status === 404) errMsg = "Could not find " + atmo.capitalize(userCity) + ". Please try again.";
-            //     $("#errMsg").text(errMsg)
-            // })
 
         // clear the input text so box is empty on refresh
         userLocation.val("");
