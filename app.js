@@ -51,13 +51,18 @@ atmo.getWeather = (lat, lng) => {
 }
 
 atmo.getBg = (query) => {
+    // determine screen size to search for either landscape or portrait
+    let screenDir;
+    if (window.innerHeight > window.innerWidth) screenDir = "portrait";
+    else screenDir = "landscape";
+
     return $.ajax({
         url: "https://api.unsplash.com/search/photos/",
         method: "GET",
         dataType: "json",
         data: {
             client_id: atmo.unsplashKey,
-            orientation: "landscape",
+            orientation: screenDir,
             query: query
         }
     });
@@ -145,6 +150,7 @@ atmo.setState = (stateName, show) => {
     // assemble all components whose visibility must be changed
     const components = atmo.states[stateName];
     const keys = Object.keys(components);
+
     let time;
     if (stateName === "welcome") time = 0;
     else time = 500;
