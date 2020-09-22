@@ -52,20 +52,26 @@ footer {
 }
 
 @media (max-width: 780px) {
+    // center header text
     h1 {
         width: 100%;
         text-align: center;
         font-size: 3.4rem;
     }
+
+    // reduce font size of instructions
     .instructionContainer {
         font-size: 1em;
     }
 }
 
 @media (max-width: 400px) {
+    // reduce font size globally
     body {
         font-size: 100%;
     }
+
+    // switch header text/weather widget to column layout
     header {
         flex-direction: column;
         align-items: center;

@@ -99,6 +99,7 @@ select {
         padding: 0 0.8em;
     }
 
+    // reverse the button's gradient
     &.nightMode {
         background: linear-gradient(45deg, transparent 50%, rgba(170, 139, 139, 0.25) 50%);
     
@@ -108,11 +109,14 @@ select {
         }
     }
 }
+
+// shrink button size appropriately at smaller screen widths
 @media (max-width: 780px) {
     input, select {
         width: min-content;
     }
 }
+
 @media (max-width: 374px) {
     button, input, select {
         width: 250px;

@@ -14,6 +14,7 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
     clip: rect(0 0 0 0);
 }
 
+// toggled with jQuery to show/hide components depending on app state
 .hidden {
     display: none;
 }

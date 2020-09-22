@@ -48,8 +48,9 @@ main {
     transition: background-color 500ms linear;
     z-index: -1;
 
+    // switch the overlay background when night mode is toggled
     &.nightMode {
-        background-color: #2a2a2a;
+        background-color: $darkgrey;
     }
 }
 
@@ -67,12 +68,15 @@ main {
     width: min-content;
 }
 
+// switch main section to column layout at smaller screen widths
 @media (max-width: 780px) {
     main {
         width: 90%;
         flex-direction: column;
         flex-wrap: nowrap;
         align-items: center;
+
+        // add padding to all children of main
         & > * {
             margin-bottom: 30px;
         }
