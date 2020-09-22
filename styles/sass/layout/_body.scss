@@ -66,3 +66,15 @@ main {
 .shuffle {
     width: min-content;
 }
+
+@media (max-width: 780px) {
+    main {
+        width: 90%;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        & > * {
+            margin-bottom: 30px;
+        }
+    }
+}

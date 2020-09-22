@@ -76,6 +76,15 @@ atmo.setBg = (data) => {
     })
     $("h1").css({
         "font-size": "2.5rem",
+    });
+
+    // set css for mobile view
+    if (window.matchMedia('(max-width: 780px) and (min-width: 400px)').matches) {
+        $("h1").css({
+            "text-align": "left",
+        });
+    }
+
     $("#modeButton").fadeOut(500);
 
     // add description of bg image for screen readers

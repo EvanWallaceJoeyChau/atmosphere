@@ -108,3 +108,13 @@ select {
         }
     }
 }
+@media (max-width: 780px) {
+    input, select {
+        width: min-content;
+    }
+}
+@media (max-width: 374px) {
+    button, input, select {
+        width: 250px;
+    }
+}

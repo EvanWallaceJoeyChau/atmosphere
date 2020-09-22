@@ -261,6 +261,36 @@ footer {
   font-size: 0.9rem;
 }
 
+@media (max-width: 780px) {
+  h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 3.4rem;
+  }
+  .instructionContainer {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 400px) {
+  body {
+    font-size: 100%;
+  }
+  header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    height: 25vh;
+  }
+}
+
 button, input, select,
 .inputWrapper, .selectWrapper {
   border: 1px solid #999;
@@ -394,6 +424,20 @@ select:hover {
   background: linear-gradient(45deg, transparent 50%, rgba(170, 139, 139, 0.25) 50%);
 }
 
+@media (max-width: 780px) {
+  input, select {
+    width: -webkit-min-content;
+    width: -moz-min-content;
+    width: min-content;
+  }
+}
+
+@media (max-width: 374px) {
+  button, input, select {
+    width: 250px;
+  }
+}
+
 i:hover {
   cursor: pointer;
 }
@@ -466,6 +510,8 @@ main {
   width: 100%;
   height: 100%;
   background-color: white;
+  -webkit-transition: background-color 500ms linear;
+  transition: background-color 500ms linear;
   z-index: -1;
 }
 
@@ -481,7 +527,8 @@ main {
       flex-basis: 100%;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  width: 100px;
+  width: 100%;
+  padding: 2em 0 0.8em;
   height: -webkit-min-content;
   height: -moz-min-content;
   height: min-content;
@@ -491,6 +538,24 @@ main {
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
+}
+
+@media (max-width: 780px) {
+  main {
+    width: 90%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  main > * {
+    margin-bottom: 30px;
+  }
 }
 
 footer {
