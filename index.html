@@ -19,15 +19,18 @@
         </div>
     </header>
     <main>
+        <div class="instructionContainer" id="instructions">
+            <p>Choose an option to retrieve an ambient image for your workspace.</p>
+        </div>
         <form id="location" class="userInput" autocomplete="off">
 
-            <label for="locationInputBtn" class="srOnly">Select to enter your city</label>
+            <label for="locationInputBtn" class="srOnly">Select to enter your location</label>
             <button type="button" id="locationInputBtn">Location</button>
 
-            <label for="locationInputText" class="srOnly">Enter your city, and hit enter to
-                submit</label>
             <div class="inputWrapper hidden" id="locationInputContainer">
-                <input type="text" id="locationInputText" placeholder="Enter your City">
+                <label for="locationInputText" class="srOnly">Enter your location, and hit enter to
+                    submit</label>
+                <input type="text" id="locationInputText" placeholder="Enter your Location">
             </div>
             <p id="errMsg" class="err"></p>
             <!-- location -->
@@ -38,8 +41,8 @@
             <label for="presetInputBtn" class="srOnly">Select to choose from a list of presets</label>
             <button type="button" id="presetInputBtn">Presets</button>
 
-            <label for="presetInputMenu" class="srOnly">Choose a preset</label>
             <div class="selectWrapper hidden" id="presetInputContainer">
+                <label for="presetInputMenu" class="srOnly">Choose a preset</label>
                 <select id="presetInputMenu" autocomplete="off">
                     <option disabled selected>Choose an option</option>
                     <option value="sunny beaches">Sunny Beach</option>
@@ -74,7 +77,9 @@
     </aside>
 
     <footer>
-        <p>Made by <a href="#">Evan Wallace</a> and <a href="#">Joey Chau</a> at <a href="#">Juno College</a></p>
+        <p>Made by <a href="https://github.com/epwallace" target="_blank">Evan Wallace</a> and
+            <a href="http://chaujoey.com/" target="_blank">Joey Chau</a> at
+            <a href="https://junocollege.com/" target="_blank">Juno College</a></p>
     </footer>
     <div class="overlay" id="overlay"></div>
 

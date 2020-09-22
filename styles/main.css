@@ -213,6 +213,27 @@ body {
 
 a {
   font-weight: 500;
+  position: relative;
+}
+
+a::before {
+  content: '';
+  position: absolute;
+  left: -5%;
+  bottom: -20%;
+  width: 0%;
+  height: 120%;
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
+  border-radius: 2px;
+  -webkit-transition: width 0.4s ease-out;
+  transition: width 0.4s ease-out;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+}
+
+a:hover::before, a:focus::before {
+  width: 110%;
 }
 
 h1 {
@@ -220,20 +241,20 @@ h1 {
   font-size: 5rem;
 }
 
-form > * {
+button, input, select {
   text-transform: uppercase;
   letter-spacing: 0.1em;
-}
-
-form > * input, form > * select {
-  text-transform: inherit;
-  letter-spacing: inherit;
 }
 
 .err {
   text-transform: none;
   letter-spacing: normal;
   font-size: 0.9em;
+}
+
+.instructionContainer {
+  font-size: 1.5em;
+  line-height: 1.5em;
 }
 
 footer {
@@ -413,17 +434,25 @@ body {
 
 main {
   width: 100%;
-  max-width: 1024px;
+  max-width: 1280px;
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   height: 20vh;
+  position: relative;
+}
+
+.instructionContainer {
+  position: absolute;
+  text-align: center;
+  width: 60%;
+  margin: 0 auto;
+  bottom: 280px;
 }
 
 .err {
@@ -490,10 +519,7 @@ header {
   padding: 10px 20px;
   background-color: rgba(153, 153, 153, 0.25);
   border-radius: 50%;
-}
-
-.tempBox {
-  padding-right: 0.2em;
+  text-align: center;
 }
 
 img {

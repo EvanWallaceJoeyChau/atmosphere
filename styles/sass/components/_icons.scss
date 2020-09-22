@@ -2,7 +2,7 @@ i:hover {
     cursor: pointer;
 }
 .fa-circle {
-    color: rgba(153, 153, 153, 0.25);
+    color: $greyBg;
 }
 
 .fa-stack:hover {
@@ -11,6 +11,6 @@ i:hover {
     }
 
     .fa-stack-1x {
-        color: rgba(153, 153, 153, 0.25);
+        color:$greyBg;
     }
 }

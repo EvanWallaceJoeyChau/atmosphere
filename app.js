@@ -12,7 +12,6 @@ atmo.capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1);
 atmo.toggleNightMode = () => {
     // toggle fill of Font Awesome icons
     $(".modeButton i").toArray().forEach(icon => {
-        console.log(icon)
         if ($(icon).hasClass("fas")) {
             $(icon).removeClass("fas");
             $(icon).addClass("far");
@@ -89,8 +88,10 @@ atmo.states = {
     welcome: {
         overlay: true,
         modeButton: true,
+        preset: true,
         presetInputBtn: true,
         presetInputContainer: false,
+        location: true,
         locationInputBtn: true,
         locationInputContainer: false,
         sidebar: false,
@@ -98,11 +99,9 @@ atmo.states = {
     },
     inputLocation: {
         overlay: true,
-        presetInputBtn: false,
-        presetInputContainer: false,
+        preset: false,
         locationInputBtn: false,
         locationInputContainer: true,
-        locationInputSubmit: true,
         sidebar: false,
         weatherInfo: false,
     },
@@ -110,51 +109,51 @@ atmo.states = {
         overlay: true,
         presetInputBtn: false,
         presetInputContainer: true,
-        locationInputBtn: false,
-        locationInputContainer: false,
-        locationInputSubmit: false,
+        location: false,
         sidebar: false,
         weatherInfo: false,
     },
     locationResult: {
         overlay: false,
         modeButton: false,
-        presetInputBtn: false,
-        presetInputContainer: false,
-        locationInputBtn: false,
-        locationInputContainer: false,
-        locationInputSubmit: false,
+        preset: false,
+        location: false,
         sidebar: true,
         weatherInfo: true,
     },
     presetResult: {
         overlay: false,
         modeButton: false,
-        presetInputBtn: false,
-        presetInputContainer: false,
-        locationInputBtn: false,
-        locationInputContainer: false,
-        locationInputSubmit: false,
+        preset: false,
+        location: false,
         sidebar: true,
         weatherInfo: false,
     }
 }
 
 // set the state of the app by hiding/showing app components
-atmo.setState = (stateName) => {
+atmo.setState = (stateName, show) => {
     // assemble all components whose visibility must be changed
     const components = atmo.states[stateName];
     const keys = Object.keys(components);
+    let time;
+    if (stateName === "welcome") time = 0;
+    else time = 500;
 
     // set the visibility of each compoennt's DOM node according to the boolean value
-    keys.forEach((key) => {
-        const node = $(`#${key}`);
-        if (components[key]) {
-            node.removeClass('hidden');
-        } else {
-            node.addClass('hidden');
-        }
-    });
+    $("form").fadeOut(500);
+    window.setTimeout(() => {
+        keys.forEach((key) => {
+            const node = $(`#${key}`);
+
+            if (components[key]) {
+                node.removeClass('hidden');
+            } else {
+                node.addClass('hidden');
+            }
+            $(show).fadeIn(500);
+        });
+    }, time);
 };
 
 atmo.createWeatherDisplay = (weatherData) => {
@@ -172,11 +171,19 @@ atmo.createWeatherDisplay = (weatherData) => {
 };
 
 atmo.init = () => {
-    // when user clicks on "Location" button, make location input form appear
-    $("#locationInputBtn").on("click", () => { atmo.setState("inputLocation") });
 
-    // when user clicks on "preset" button, make preset dropdown menu form appear
-    $("#presetInputBtn").on("click", () => { atmo.setState("inputPreset") });
+    // fade instructions in, and fade out after 3.5s
+    $("main").hide().fadeIn(1000);
+    window.setTimeout(() => {
+        $("#instructions").fadeTo(1000, 0);
+    }, 3500);
+
+    // when user clicks on "Location" or "preset" button, make next form input appear
+    $("#locationInputBtn, #presetInputBtn").on("click", function () {
+        const id = $(this).parent()[0].id;
+        const stateName = "input" + atmo.capitalize(id);
+        atmo.setState(stateName, "#" + id);
+    });
 
     // when user enters a location, pass location into getWeather
     $("#location").on("submit", function (e) {
@@ -186,7 +193,6 @@ atmo.init = () => {
         $("#errMsg").empty();
 
         // request information about user's location from geolocation API
-        // TODO: handle errors for all APIs
         atmo.getLocation(userCity)
             .then((res) => {
                 // extract data from location response
@@ -199,7 +205,7 @@ atmo.init = () => {
 
                 // when weather response arrives, request background image from photo API
                 const imageResponse = weatherResponse.then((weatherData) => {
-                    atmo.createWeatherDisplay(weatherData) 
+                    atmo.createWeatherDisplay(weatherData);
                     return atmo.getBg(`${weatherData.weather[0].description} ${country}`);
                 })
 
@@ -209,14 +215,18 @@ atmo.init = () => {
             .then((res) => {
                 // set and reveal the background image
                 atmo.setBg(res);
-                atmo.setState("locationResult");
+                atmo.setState("locationResult", "body");
+            })
+            .fail(err => {
+                let errMsg;
+                // if user does not enter anything in the input
+                if (userCity || userCity === "") errMsg = "Please enter your location";
+                // if either geolocation API or weather API cannot return a response
+                else if (err.status === 400) errMsg = "Could not find " + atmo.capitalize(userCity) + ". Please try again.";
+                // all other errors (i.e., exceeded API limits)
+                else errMsg = "Could not process your request. Please try again later.";
+                $("#errMsg").text(errMsg);
             });
-            // .fail(err => {
-            //     let errMsg;
-            //     if (err.status === 400) errMsg = "Please enter a city";
-            //     else if (err.status === 404) errMsg = "Could not find " + atmo.capitalize(userCity) + ". Please try again.";
-            //     $("#errMsg").text(errMsg)
-            // })
 
         // clear the input text so box is empty on refresh
         userLocation.val("");
@@ -228,7 +238,7 @@ atmo.init = () => {
         const preset = $("#presetInputMenu").val();
         atmo.getBg(preset)
             .then(res => atmo.setBg(res))
-            .then(atmo.setState("presetResult"));
+            .then(atmo.setState("presetResult", "body"));
     });
 
     // when user clicks shuffle icon, choose a random background using presets
@@ -243,7 +253,7 @@ atmo.init = () => {
 
     // return the user to the input selection screen
     $("#restartIcon").on("click", () => {
-        atmo.setState("welcome");
+        atmo.setState("welcome", "form, .modeButton");
 
         // remove weather Info
         $("#weatherInfo").empty();

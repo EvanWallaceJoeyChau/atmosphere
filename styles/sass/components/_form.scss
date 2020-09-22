@@ -65,7 +65,7 @@ button {
     transition: background-color 0.4s ease-in;
     &:focus,
     &:hover {
-        background-color: rgba(153, 153, 153, 0.25);
+        background-color: $greyBg;
     }
 }
 input, select {
