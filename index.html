@@ -22,16 +22,23 @@
 </head>
 
 <body class="wrapper">
+
+    <!-- header area -->
     <header>
         <h1>Atmosphere</h1>
+
+        <!-- weather widget (only visible when location is specified) -->
         <div class="weatherContainer hidden" id="weatherInfo">
             <!-- weather info updated here -->
         </div>
     </header>
     <main>
+        <!-- instructions for using the app -->
         <div class="instructionContainer" id="instructions">
             <p>Choose an option to retrieve an ambient image for your workspace.</p>
         </div>
+        
+        <!-- input location: button and text form -->
         <form id="location" class="userInput" autocomplete="off">
 
             <label for="locationInputBtn" class="srOnly">Select to enter your location</label>
@@ -42,10 +49,12 @@
                     submit</label>
                 <input type="text" id="locationInputText" placeholder="Enter your Location">
             </div>
+
+            <!-- messages about API errors displayed here -->
             <p id="errMsg" class="err"></p>
-            <!-- location -->
         </form>
 
+        <!-- select preset: button and drop-down menu -->
         <form id="preset" class="userInput">
 
             <label for="presetInputBtn" class="srOnly">Select to choose from a list of presets</label>
@@ -62,9 +71,9 @@
                 </select>
                 <span class="selectArrow" aria-hidden="true"></span>
             </div>
-            <!-- select preset -->
         </form>
 
+        <!-- button for toggling day/night mode -->
         <div class="modeButtonContainer">
             <label for="modeButton" class="srOnly">Toggle day or night mode</label>
             <button class="modeButton" id="modeButton">
@@ -74,6 +83,8 @@
         </div>
 
     </main>
+
+    <!-- sidebar area for shuffle/reset buttons -->
     <aside class="sidebar hidden" id="sidebar">
         <span class="srOnly">Click to scroll for more images</span>
         <span class="fa-stack">
@@ -87,6 +98,7 @@
         </span>
     </aside>
 
+    <!-- footer area -->
     <footer>
         <p>Made by <a href="https://github.com/epwallace" target="_blank">Evan Wallace</a> and
             <a href="http://chaujoey.com/" target="_blank">Joey Chau</a> at
