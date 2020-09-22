@@ -76,7 +76,7 @@ atmo.setBg = (data) => {
     })
     $("h1").css({
         "font-size": "2.5rem",
-    })
+    $("#modeButton").fadeOut(500);
 
     // add description of bg image for screen readers
     const description = `<span class="srOnly">${image.alt_description}</span>`;
@@ -215,7 +215,7 @@ atmo.init = () => {
             .then((res) => {
                 // set and reveal the background image
                 atmo.setBg(res);
-                atmo.setState("locationResult", "body");
+                atmo.setState("locationResult", "main");
             })
             .fail(err => {
                 let errMsg;
@@ -238,7 +238,7 @@ atmo.init = () => {
         const preset = $("#presetInputMenu").val();
         atmo.getBg(preset)
             .then(res => atmo.setBg(res))
-            .then(atmo.setState("presetResult", "body"));
+            .then(atmo.setState("presetResult", "main"));
     });
 
     // when user clicks shuffle icon, choose a random background using presets
@@ -253,7 +253,7 @@ atmo.init = () => {
 
     // return the user to the input selection screen
     $("#restartIcon").on("click", () => {
-        atmo.setState("welcome", "form, .modeButton");
+        atmo.setState("welcome", "form, #modeButton");
 
         // remove weather Info
         $("#weatherInfo").empty();
@@ -263,7 +263,7 @@ atmo.init = () => {
     })
 
     // listen for clicks on the day/night mode button
-    $(".modeButton").on("click", atmo.toggleNightMode);
+    $("#modeButton").on("click", atmo.toggleNightMode);
 }
 
 $(function () {
