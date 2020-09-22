@@ -252,6 +252,11 @@ button, input, select {
   font-size: 0.9em;
 }
 
+.instructionContainer {
+  font-size: 1.5em;
+  line-height: 1.5em;
+}
+
 footer {
   font-size: 0.9rem;
 }
@@ -416,6 +421,15 @@ main {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   height: 20vh;
+  position: relative;
+}
+
+.instructionContainer {
+  position: absolute;
+  text-align: center;
+  width: 60%;
+  margin: 0 auto;
+  bottom: 280px;
 }
 
 .err {
