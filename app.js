@@ -70,8 +70,10 @@ atmo.setBg = (data) => {
 atmo.states = {
     welcome: {
         overlay: true,
+        preset: true,
         presetInputBtn: true,
         presetInputContainer: false,
+        location: true,
         locationInputBtn: true,
         locationInputContainer: false,
         sidebar: false,
@@ -119,7 +121,7 @@ atmo.setState = (stateName) => {
     keys.forEach((key) => {
         const node = $(`#${key}`);
         if (components[key]) {
-            node.removeClass('hidden');
+            node.fadeIn(500).removeClass('hidden');
         } else {
             node.addClass('hidden');
         }
@@ -143,7 +145,7 @@ atmo.createWeatherDisplay = (weatherData) => {
 atmo.init = () => {
 
     // fade instructions in, and fade out after 3.5s
-    $("#instructions").hide().fadeIn(1000);
+    $("main").hide().fadeIn(1000);
     window.setTimeout(() => {
         $("#instructions").fadeTo(1000, 0);
     }, 3500);
