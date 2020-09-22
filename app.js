@@ -88,6 +88,7 @@ atmo.setBg = (data) => {
 atmo.states = {
     welcome: {
         overlay: true,
+        modeButton: true,
         presetInputBtn: true,
         presetInputContainer: false,
         locationInputBtn: true,
@@ -117,6 +118,7 @@ atmo.states = {
     },
     locationResult: {
         overlay: false,
+        modeButton: false,
         presetInputBtn: false,
         presetInputContainer: false,
         locationInputBtn: false,
@@ -127,6 +129,7 @@ atmo.states = {
     },
     presetResult: {
         overlay: false,
+        modeButton: false,
         presetInputBtn: false,
         presetInputContainer: false,
         locationInputBtn: false,
@@ -250,7 +253,7 @@ atmo.init = () => {
     })
 
     // listen for clicks on the day/night mode button
-    $(".modeButton").on("click", atmo.toggleButtonMode);
+    $(".modeButton").on("click", atmo.toggleNightMode);
 }
 
 $(function () {
