@@ -158,16 +158,11 @@ atmo.init = () => {
         $("#instructions").fadeTo(1000, 0);
     }, 3500);
 
-    // when user clicks on "Location" button, make location input form appear
-    $("#locationInputBtn").on("click", function () {
+    // when user clicks on "Location" or "preset" button, make next form input appear
+    $("button").on("click", function () {
         const id = $(this).parent()[0].id;
-        atmo.setState("inputLocation", "#" + id);
-    });
-
-    // when user clicks on "preset" button, make preset dropdown menu form appear
-    $("#presetInputBtn").on("click", function () {
-        const id = $(this).parent()[0].id;
-        atmo.setState("inputPreset", "#" + id)
+        const stateName = "input" + atmo.capitalize(id);
+        atmo.setState(stateName, "#" + id);
     });
 
     // when user enters a location, pass location into getWeather
