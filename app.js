@@ -112,20 +112,28 @@ atmo.states = {
 }
 
 // set the state of the app by hiding/showing app components
-atmo.setState = (stateName) => {
+atmo.setState = (stateName, show) => {
     // assemble all components whose visibility must be changed
     const components = atmo.states[stateName];
     const keys = Object.keys(components);
+    let time;
+    if (stateName === "welcome") time = 0;
+    else time = 500;
 
     // set the visibility of each compoennt's DOM node according to the boolean value
-    keys.forEach((key) => {
-        const node = $(`#${key}`);
-        if (components[key]) {
-            node.fadeIn(500).removeClass('hidden');
-        } else {
-            node.addClass('hidden');
-        }
-    });
+    $("form").fadeOut(500);
+    window.setTimeout(() => {
+        keys.forEach((key) => {
+            const node = $(`#${key}`);
+
+            if (components[key]) {
+                node.removeClass('hidden');
+            } else {
+                node.addClass('hidden');
+            }
+            $(show).fadeIn(500);
+        });
+    }, time);
 };
 
 atmo.createWeatherDisplay = (weatherData) => {
@@ -151,10 +159,16 @@ atmo.init = () => {
     }, 3500);
 
     // when user clicks on "Location" button, make location input form appear
-    $("#locationInputBtn").on("click", () => { atmo.setState("inputLocation") });
+    $("#locationInputBtn").on("click", function () {
+        const id = $(this).parent()[0].id;
+        atmo.setState("inputLocation", "#" + id);
+    });
 
     // when user clicks on "preset" button, make preset dropdown menu form appear
-    $("#presetInputBtn").on("click", () => { atmo.setState("inputPreset") });
+    $("#presetInputBtn").on("click", function () {
+        const id = $(this).parent()[0].id;
+        atmo.setState("inputPreset", "#" + id)
+    });
 
     // when user enters a location, pass location into getWeather
     $("#location").on("submit", function (e) {
@@ -186,7 +200,7 @@ atmo.init = () => {
             .then((res) => {
                 // set and reveal the background image
                 atmo.setBg(res);
-                atmo.setState("locationResult");
+                atmo.setState("locationResult", "body");
             })
             .fail(err => {
                 let errMsg;
@@ -209,7 +223,7 @@ atmo.init = () => {
         const preset = $("#presetInputMenu").val();
         atmo.getBg(preset)
             .then(res => atmo.setBg(res))
-            .then(atmo.setState("presetResult"));
+            .then(atmo.setState("presetResult", "body"));
     });
 
     // when user clicks shuffle icon, choose a random background using presets
@@ -224,7 +238,7 @@ atmo.init = () => {
 
     // return the user to the input selection screen
     $("#restartIcon").on("click", () => {
-        atmo.setState("welcome");
+        atmo.setState("welcome", "form");
 
         // remove weather Info
         $("#weatherInfo").empty();
