@@ -39,7 +39,7 @@ atmo.getLocation = (query) => {
 
 atmo.getWeather = (lat, lng) => {
     return $.ajax({
-        url: "http://api.openweathermap.org/data/2.5/weather",
+        url: "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather",
         method: "GET",
         dataType: "json",
         data: {
