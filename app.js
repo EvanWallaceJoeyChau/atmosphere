@@ -84,7 +84,7 @@ atmo.setBg = (data) => {
     });
 
     // set css for mobile view
-    if (window.matchMedia('(max-width: 780px) and (min-width: 400px)').matches) {
+    if (window.matchMedia("(max-width: 780px) and (min-width: 400px)").matches) {
         $("h1").css({
             "text-align": "left",
         });
@@ -94,7 +94,7 @@ atmo.setBg = (data) => {
 
     // add description of bg image for screen readers
     const description = `<span class="srOnly">${image.alt_description}</span>`;
-    $('main').append(description);
+    $("main").append(description);
 }
 
 // define which components are visible at each app state
@@ -162,9 +162,9 @@ atmo.setState = (stateName, show) => {
             const node = $(`#${key}`);
 
             if (components[key]) {
-                node.removeClass('hidden');
+                node.removeClass("hidden");
             } else {
-                node.addClass('hidden');
+                node.addClass("hidden");
             }
             $(show).fadeIn(500);
         });
@@ -274,7 +274,7 @@ atmo.init = () => {
         $("#weatherInfo").empty();
 
         // revert the dynamic style changes made by jQuery
-        $('body, h1').removeAttr("style");
+        $("body, h1").removeAttr("style");
     })
 
     // listen for clicks on the day/night mode button
