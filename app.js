@@ -82,7 +82,6 @@ atmo.states = {
         preset: false,
         locationInputBtn: false,
         locationInputContainer: true,
-        locationInputSubmit: true,
         sidebar: false,
         weatherInfo: false,
     },
@@ -142,6 +141,13 @@ atmo.createWeatherDisplay = (weatherData) => {
 };
 
 atmo.init = () => {
+
+    // fade instructions in, and fade out after 3.5s
+    $("#instructions").hide().fadeIn(1000);
+    window.setTimeout(() => {
+        $("#instructions").fadeTo(1000, 0);
+    }, 3500);
+
     // when user clicks on "Location" button, make location input form appear
     $("#locationInputBtn").on("click", () => { atmo.setState("inputLocation") });
 

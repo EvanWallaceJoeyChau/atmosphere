@@ -22,6 +22,15 @@ main {
     display: flex;
     justify-content: space-around;
     height: 20vh;
+    position: relative;
+}
+
+.instructionContainer {
+    position: absolute;
+    text-align: center;
+    width: 60%;
+    margin: 0 auto;
+    bottom: 280px;
 }
 
 .err {
