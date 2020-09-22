@@ -240,6 +240,61 @@ footer {
   font-size: 0.9rem;
 }
 
+button, input, select,
+.inputWrapper, .selectWrapper {
+  border: 1px solid #999;
+  padding: 0.8em;
+  position: relative;
+}
+
+button::before, button::after, input::before, input::after, select::before, select::after,
+.inputWrapper::before,
+.inputWrapper::after, .selectWrapper::before, .selectWrapper::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: block;
+  width: 0;
+  height: 0;
+}
+
+button::before, input::before, select::before,
+.inputWrapper::before, .selectWrapper::before {
+  height: 130%;
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
+  -webkit-transition: width 0.6s ease-out;
+  transition: width 0.6s ease-out;
+}
+
+button::after, input::after, select::after,
+.inputWrapper::after, .selectWrapper::after {
+  width: 92%;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+  -webkit-transition: height 0.6s ease-out;
+  transition: height 0.6s ease-out;
+}
+
+button:hover::before, button:focus-within::before, button:focus::before, input:hover::before, input:focus-within::before, input:focus::before, select:hover::before, select:focus-within::before, select:focus::before,
+.inputWrapper:hover::before,
+.inputWrapper:focus-within::before,
+.inputWrapper:focus::before, .selectWrapper:hover::before, .selectWrapper:focus-within::before, .selectWrapper:focus::before {
+  width: 92%;
+  height: 130%;
+}
+
+button:hover::after, button:focus-within::after, button:focus::after, input:hover::after, input:focus-within::after, input:focus::after, select:hover::after, select:focus-within::after, select:focus::after,
+.inputWrapper:hover::after,
+.inputWrapper:focus-within::after,
+.inputWrapper:focus::after, .selectWrapper:hover::after, .selectWrapper:focus-within::after, .selectWrapper:focus::after {
+  width: 92%;
+  height: 130%;
+}
+
 .selectWrapper,
 .inputWrapper {
   height: -webkit-min-content;
@@ -310,11 +365,11 @@ select:hover {
   padding: 0 0.8em;
 }
 
-.nightMode {
+.modeButton.nightMode {
   background: linear-gradient(45deg, transparent 50%, rgba(170, 139, 139, 0.25) 50%);
 }
 
-.nightMode:hover {
+.modeButton.nightMode:hover {
   background: linear-gradient(45deg, transparent 50%, rgba(170, 139, 139, 0.25) 50%);
 }
 
@@ -383,6 +438,10 @@ main {
   height: 100%;
   background-color: white;
   z-index: -1;
+}
+
+.overlay.nightMode {
+  background-color: #2a2a2a;
 }
 
 .modeButtonContainer {
