@@ -30,14 +30,14 @@ button, input, select,
     &:focus-within,
     &:focus {
         &::before {
-        width: 92%;
-        height: 130%;
-    }
+            width: 92%;
+            height: 130%;
+        }
         &::after {
-        width: 92%;
-        height: 130%;
+            width: 92%;
+            height: 130%;
+        }
     }
-}
 }
 
 .selectWrapper,
@@ -83,10 +83,10 @@ input, select {
     &:focus-within,
     &:focus {
         outline-offset: 0.8em;
-}
+    }
 }
 select {
-    width: 300px;
+    width: 330px;
     appearance: none;
     padding-right: 0.8em;
     &:hover {
@@ -96,7 +96,7 @@ select {
 
 // styles for day/night mode button
 .modeButton {
-    width: 175px;
+    width: 190px;
     background: linear-gradient(135deg, rgba(170, 139, 139, 0.25) 50%, transparent 50%);
 
     &:hover {
