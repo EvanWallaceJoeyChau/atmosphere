@@ -26,17 +26,17 @@ button, input, select,
         border-right: 1px solid $grey;   
         transition: height 0.6s ease-out;
     }
-    &:hover::before,
-    &:focus-within::before,
-    &:focus::before {
-        width: 92%;
-        height: 130%;
-    }
-    &:hover::after,
-    &:focus-within::after,
-    &:focus::after {
-        width: 92%;
-        height: 130%;
+    &:hover,
+    &:focus-within,
+    &:focus {
+        &::before {
+            width: 92%;
+            height: 130%;
+        }
+        &::after {
+            width: 92%;
+            height: 130%;
+        }
     }
 }
 
@@ -44,6 +44,10 @@ button, input, select,
 .inputWrapper {
     height: min-content;
     width: min-content;
+    &:focus-within,
+    &:focus {
+        background-color: $greyBg;
+    }
     .selectArrow {
         &::after {
             content: '';
@@ -76,9 +80,13 @@ input, select {
     text-align: center;
     position: relative;
     z-index: 5;
+    &:focus-within,
+    &:focus {
+        outline-offset: 0.8em;
+    }
 }
 select {
-    width: 300px;
+    width: 330px;
     appearance: none;
     padding-right: 0.8em;
     &:hover {
@@ -88,7 +96,7 @@ select {
 
 // styles for day/night mode button
 .modeButton {
-    width: 175px;
+    width: 190px;
     background: linear-gradient(135deg, rgba(170, 139, 139, 0.25) 50%, transparent 50%);
 
     &:hover {

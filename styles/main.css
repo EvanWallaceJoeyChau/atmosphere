@@ -356,6 +356,12 @@ button:hover::after, button:focus-within::after, button:focus::after, input:hove
   width: min-content;
 }
 
+.selectWrapper:focus-within, .selectWrapper:focus,
+.inputWrapper:focus-within,
+.inputWrapper:focus {
+  background-color: rgba(153, 153, 153, 0.25);
+}
+
 .selectWrapper .selectArrow::after,
 .inputWrapper .selectArrow::after {
   content: '';
@@ -391,8 +397,12 @@ input, select {
   z-index: 5;
 }
 
+input:focus-within, input:focus, select:focus-within, select:focus {
+  outline-offset: 0.8em;
+}
+
 select {
-  width: 300px;
+  width: 330px;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -404,7 +414,7 @@ select:hover {
 }
 
 .modeButton {
-  width: 175px;
+  width: 190px;
   background: linear-gradient(135deg, rgba(170, 139, 139, 0.25) 50%, transparent 50%);
 }
 
