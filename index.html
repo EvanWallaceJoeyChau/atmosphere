@@ -41,7 +41,6 @@
         <!-- input location: button and text form -->
         <form id="location" class="userInput" autocomplete="off">
 
-            <label for="locationInputBtn" class="srOnly">Select to enter your location</label>
             <button type="button" id="locationInputBtn">Location</button>
 
             <div class="inputWrapper hidden" id="locationInputContainer">
@@ -57,7 +56,6 @@
         <!-- select preset: button and drop-down menu -->
         <form id="preset" class="userInput">
 
-            <label for="presetInputBtn" class="srOnly">Select to choose from a list of presets</label>
             <button type="button" id="presetInputBtn">Presets</button>
 
             <div class="selectWrapper hidden" id="presetInputContainer">
@@ -75,8 +73,8 @@
 
         <!-- button for toggling day/night mode -->
         <div class="modeButtonContainer">
-            <label for="modeButton" class="srOnly">Toggle day or night mode</label>
             <button class="modeButton" id="modeButton">
+                <span class="srOnly">Toggle day or night mode</span>
                 <i class="fas fa-sun" aria-hidden="true"></i>
                 <i class="far fa-moon" aria-hidden="true"></i>
             </button>
