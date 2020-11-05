@@ -201,7 +201,7 @@ atmo.init = () => {
     });
 
     // when user enters a location, pass location into getWeather
-    $("#location").on("submit", function (e) {
+    $("#location").on("submit", (e) => {
         e.preventDefault();
         let userLocation = $("#locationInputText");
         const userCity = userLocation.val();
@@ -248,7 +248,7 @@ atmo.init = () => {
     });
 
     // when user chooses a preset, pass value to Unsplash API
-    $("#preset").on("change", function (e) {
+    $("#preset").on("change", (e) => {
         e.preventDefault();
         const preset = $("#presetInputMenu").val();
         atmo.getBg(preset)
@@ -281,6 +281,6 @@ atmo.init = () => {
     $("#modeButton").on("click", atmo.toggleNightMode);
 }
 
-$(function () {
+$(() => {
     atmo.init();
 })
